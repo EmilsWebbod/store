@@ -1,0 +1,15 @@
+{
+  "short_name": "cf-kyt",
+  "name": "C°F Starter Kyt",
+  "background_color": "white",
+  "theme_color": "white",
+  "icons": [
+    {
+      "src": "favicon.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "./",
+  "display": "standalone"
+}

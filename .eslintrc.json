@@ -1,0 +1,20 @@
+{
+  "parser": "babel-eslint",
+  "extends": [
+    "eslint-config-kyt"
+  ],
+
+  "env": {
+  },
+
+  "plugins": [
+  ],
+
+  "rules": {
+  },
+
+  "globals": {
+    "KYT": true
+  }
+
+}
