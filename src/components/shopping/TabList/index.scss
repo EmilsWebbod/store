@@ -1,4 +1,9 @@
 
+.TabList {
+  display: flex;
+}
+
 .Paper {
   padding: 0.5em;
+  flex: 1;
 }

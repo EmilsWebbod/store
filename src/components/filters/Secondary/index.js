@@ -14,25 +14,16 @@ import {
 
 
 class Secondary extends React.Component {
-  state = {
-    open: true
-  };
-
-  toggleCollapse = () => {
-    this.setState({
-      open: !this.state.open
-    })
-  };
 
   render() {
-    let {filters, id, text, onClick} = this.props;
+    const {filters, id, text, active, onClick, onToggle} = this.props;
     return (
       <List>
-        <ListItem button onClick={this.toggleCollapse}>
+        <ListItem button onClick={onToggle}>
           <ListItemText primary={text}/>
-          {this.state.open ? <ExpandLess /> : <ExpandMore />}
+          {active ? <ExpandLess /> : <ExpandMore />}
         </ListItem>
-        <Collapse in={this.state.open}>
+        <Collapse in={active}>
           {filters.map((filter, i)=> (
             <SecondaryFilter key={filter.id} {...filter} onClick={onClick(i)}/>
           ))}
@@ -44,7 +35,8 @@ class Secondary extends React.Component {
 
 Secondary.proptype = {
   filters: PropTypes.array.isRequired,
-  onClick: PropTypes.func.isRequired
+  onClick: PropTypes.func.isRequired,
+  onToggle: PropTypes.func.isRequired
 };
 
 export default Secondary;

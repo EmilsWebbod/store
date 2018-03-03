@@ -72,6 +72,13 @@ describe('REDUCERS', () => {
       const action = actions.setActiveItem(item);
       const result = reducers.active_item(undefined, action);
       expect(result).toEqual(item);
+    });
+
+    it('should set active primary', () => {
+      const primary = {id: '1', text: 'Primary 1'};
+      const action = actions.setActivePrimary(primary);
+      const result = reducers.active_primary(undefined, action);
+      expect(result).toEqual(primary);
     })
   });
 
@@ -133,6 +140,16 @@ describe('REDUCERS', () => {
         const action = actions.setShoppingListToFilter(id, mock_list);
         const result = reducers.secondaries(secondaries[p].secondary, action);
         expect(result[s].filters[f].list).toEqual(mock_list);
+      });
+
+      it('should toggle secondary tab', () => {
+        const secondary = secondaries[0].secondary[0];
+        const action = actions.toggleSecondary(secondary.id);
+        let result = reducers.secondaries(secondaries[0].secondary, action);
+        expect(result[0].active).toBe(true);
+        expect(result[1].active).toBe(undefined);
+        result = reducers.secondaries(result, action);
+        expect(result[0].active).toBe(false);
       })
     });
 

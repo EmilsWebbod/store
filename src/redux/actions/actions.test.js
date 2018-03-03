@@ -44,6 +44,14 @@ describe('ACTIONS', () => {
         item: item
       })
     });
+
+    it('should give correct action on setActivePrimary(primary)', () => {
+      const primary = {id: 'test', text: 'text'};
+      expect(action.setActivePrimary(primary)).toEqual({
+        type: action.ACTIVE_SET_PRIMARY,
+        primary: primary
+      });
+    });
   });
 
   describe('FILTERS', () => {
@@ -89,7 +97,7 @@ describe('ACTIONS', () => {
         const secondary_i = 0;
         const filter_i = 0;
         expect(action.toggleFilterSecondary(secondary_i, filter_i)).toEqual({
-          type: action.FILTER_TOGGLE_SECONDARY,
+          type: action.FILTER_TOGGLE_SECONDARY_FILTER,
           secondary_i: secondary_i,
           filter_i: filter_i
         })
@@ -103,6 +111,14 @@ describe('ACTIONS', () => {
           list: []
         })
       });
+
+      it('should give correct action on toggleSecondary', () => {
+        const id = '0';
+        expect(action.toggleSecondary(id)).toEqual({
+          type: action.FILTER_TOGGLE_SECONDARY,
+          secondary_id: id
+        })
+      })
     });
 
     describe('FILTERS', () => {

@@ -24,21 +24,13 @@ class Store extends Component {
   render() {
     return (
       <section>
-        <h3>Store</h3> <br />
-
-        <h3>Primaries</h3>
         <PrimaryList />
-
-        <h3>Secondaries</h3>
-        <div style={{width: '50%'}}>
-          <SecondaryList />
-        </div>
-
-        <h3>Filters</h3>
+        <TabList />
+        <SecondaryList />
         <Filters />
 
+
         <h3>Tabs</h3>
-        <TabList />
 
         <h3>Items</h3>
         <ItemList />

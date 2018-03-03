@@ -2,7 +2,7 @@ import {primaries} from "../../../test/mock/primary.moct";
 import {secondaries} from "../../../test/mock/secondary.mock";
 import {
   clearShoppingList,
-  pushShoppingList,
+  pushShoppingList, setActivePrimary,
   setFilterFilter, setFilterPrimary, setFilterSecondary,
   setFilterSecondaryToPrimary, setShoppingList
 } from "../../actions/actions";
@@ -75,8 +75,11 @@ export const getSecondaries = (id) => () => {
 
         const pri_i = primaries.findIndex(x => x.id === id);
         const {secondary} = primaries[pri_i];
+
+        dispatch(setActivePrimary(primaries[pri_i]));
+
         if (pri_i !== -1 && secondary) {
-          console.log('Do not get secondaries. Already exist :)')
+          console.log('Do not get secondaries. Already exist :)');
           dispatch(setFilterSecondary(secondary));
           return resolve(secondary)
         }

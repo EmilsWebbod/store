@@ -6,17 +6,24 @@ import {Li, Ul} from "../../global/list/";
 
 const React = require('react');
 
-const PrimaryList = ({primaries, handlePrimaryClick}) => (
+const isActive = (active, primary) => {
+  return active && primary && active.id === primary.id;
+};
+
+const PrimaryList = ({primaries, active, handlePrimaryClick}) => (
   <Ul flex>
     {primaries.map(primary => (
-      <Li key={primary.id} ><Primary {...primary} onClick={handlePrimaryClick}/></Li>
+      <Li key={primary.id} >
+        <Primary {...primary} active={isActive(active, primary)} onClick={handlePrimaryClick}/>
+      </Li>
     ))}
   </Ul>
 );
 
 const mapStateToProps = (state) => {
   return {
-    primaries: state.filters.primaries
+    primaries: state.filters.primaries,
+    active: state.filters.active.primary
   }
 };
 

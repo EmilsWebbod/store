@@ -3,8 +3,9 @@ import {
   FILTER_CLEAR_FILTERS, FILTER_CLEAR_PRIMARY, FILTER_CLEAR_SECONDARY,
   FILTER_SET_FILTERS, FILTER_SET_LIST_TO_FILTER, FILTER_SET_PRIMARY,
   FILTER_SET_SECONDARY, FILTER_SET_SECONDARY_TO_PRIMARY, FILTER_TOGGLE_FILTERS,
-  FILTER_TOGGLE_SECONDARY, ACTIVE_CLEAR_CATEGORY,
-  ACTIVE_SET_CATEGORY, ACTIVE_SET_FILTER, ACTIVE_CLEAR_FILTER, SHOPPING_SET_LIST, SHOPPING_CLEAR_LIST, ACTIVE_SET_ITEM
+  FILTER_TOGGLE_SECONDARY_FILTER, ACTIVE_CLEAR_CATEGORY,
+  ACTIVE_SET_CATEGORY, ACTIVE_SET_FILTER, ACTIVE_CLEAR_FILTER, SHOPPING_SET_LIST, SHOPPING_CLEAR_LIST, ACTIVE_SET_ITEM,
+  ACTIVE_SET_PRIMARY, FILTER_TOGGLE_SECONDARY
 } from "../../actions/actions";
 
 import {getIndexFromPropOf2dArray, withId} from "../../../helpers/utils";
@@ -15,6 +16,7 @@ export const DEFAULT_FILTER_STATE = {
   filters: [],
   active: {
     category: null,
+    primary: null,
     filter: null,
     item: null
   }
@@ -29,15 +31,16 @@ export default function filter(state = DEFAULT_FILTER_STATE, action) {
   };
 }
 
-export function active(state = null, action) {
+export function active(state = DEFAULT_FILTER_STATE.active, action) {
   return {
     category: active_category(state.category, action),
     filter: active_filter(state.filter, action),
-    item: active_item(state.item, action)
+    item: active_item(state.item, action),
+    primary: active_primary(state.primary, action)
   }
 }
 
-export function active_category(state = null, action) {
+export function active_category(state = DEFAULT_FILTER_STATE.active.category, action) {
   switch (action.type) {
     case ACTIVE_SET_CATEGORY: return action.category;
     case ACTIVE_CLEAR_CATEGORY: return null;
@@ -45,7 +48,14 @@ export function active_category(state = null, action) {
   }
 }
 
-export function active_filter(state = null, action) {
+export function active_primary(state = DEFAULT_FILTER_STATE.active.primary, action) {
+  switch (action.type) {
+    case ACTIVE_SET_PRIMARY: return action.primary;
+    default: return state;
+  }
+}
+
+export function active_filter(state = DEFAULT_FILTER_STATE.active.filter, action) {
   switch (action.type) {
     case ACTIVE_SET_FILTER:
     case SHOPPING_SET_LIST:
@@ -62,7 +72,7 @@ export function active_filter(state = null, action) {
   }
 }
 
-export function active_item(state = null, action) {
+export function active_item(state = DEFAULT_FILTER_STATE.active.item, action) {
   switch (action.type) {
     case ACTIVE_SET_ITEM:
       return action.item;
@@ -94,6 +104,21 @@ const DEFAULT_SECONDARIES = [];
 export function secondaries(state = DEFAULT_SECONDARIES, action) {
   switch (action.type) {
     case FILTER_TOGGLE_SECONDARY:
+      const s_i = state.findIndex(x => x.id === action.secondary_id);
+      if (s_i === -1) {
+        console.warn('Could not find secondary with id: ', action.secondary_id);
+        return state;
+      }
+      return state.map(secondary => {
+        if (secondary.id === action.secondary_id) {
+          return {
+            ...secondary,
+            active: !secondary || !secondary.active
+          }
+        }
+        return secondary;
+      });
+    case FILTER_TOGGLE_SECONDARY_FILTER:
       const s = action.secondary_i;
       const f = action.filter_i;
       if (!state[s] || !state[s].filters[f]) {

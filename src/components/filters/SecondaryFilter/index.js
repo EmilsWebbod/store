@@ -25,7 +25,6 @@ class SecondaryFilter extends React.Component {
         <ListItemText inset primary={text} />
         <ListItemSecondaryAction>
           <Checkbox
-            onChange={handleClick}
             checked={active}
           />
         </ListItemSecondaryAction>

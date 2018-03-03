@@ -3,14 +3,13 @@ import { shallow } from 'enzyme';
 import { TabList } from './';
 import {secondaries} from "../../../test/mock/secondary.mock";
 import {mapDispatchToProps, mapStateToProps} from "./index";
-import Paper from 'material-ui/Paper';
 
 const secondary = secondaries[0].secondary;
 const Render = () => shallow(<TabList secondaries={secondary} />);
 
 describe('TabList', () => {
   it('should render as ul', () => {
-    expect(Render().is(Paper)).toBeTruthy();
+    expect(Render().is('div')).toBeTruthy();
   });
 
   it('should mapStateToProps', () => {

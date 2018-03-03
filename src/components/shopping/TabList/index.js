@@ -6,6 +6,8 @@ import {bindActionCreators} from "redux";
 
 import Tab from "../Tab/index";
 import Paper from 'material-ui/Paper';
+import Button from "material-ui/Button/Button";
+import Arrow from "material-ui-icons/ArrowForward"
 
 import styles from './index.scss';
 
@@ -15,13 +17,19 @@ class TabList extends Component {
     const {secondaries, handleTabClick} = this.props;
 
     return (
-      <Paper className={styles.Paper}>
-        {secondaries.map(secondary => {
-          return secondary.filters.map(filter => {
-            return filter.active ? <Tab {...filter} onClick={() => handleTabClick(filter)} /> : '';
-          })
-        })}
-      </Paper>
+      <div className={styles.TabList}>
+        <Button>
+          Add Filters
+          <Arrow />
+        </Button>
+        <Paper className={styles.Paper}>
+          {secondaries.map(secondary => {
+            return secondary.filters.map(filter => {
+              return filter.active ? <Tab {...filter} onClick={() => handleTabClick(filter)} /> : '';
+            })
+          })}
+        </Paper>
+      </div>
     )
   }
 }

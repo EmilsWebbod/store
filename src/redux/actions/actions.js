@@ -5,6 +5,7 @@ export const ACTIVE_CLEAR_CATEGORY = 'ACTIVE_CLEAR_CATEGORY';
 export const ACTIVE_SET_FILTER = 'ACTIVE_SET_FILTER';
 export const ACTIVE_CLEAR_FILTER = 'ACTIVE_CLEAR_FILTER';
 export const ACTIVE_SET_ITEM = 'ACTIVE_SET_ITEM';
+export const ACTIVE_SET_PRIMARY = 'ACTIVE_SET_PRIMARY';
 
 export function setActiveCategory(category) {
   return {
@@ -39,6 +40,12 @@ export function setActiveItem(item) {
   }
 }
 
+export function setActivePrimary(primary) {
+  return {
+    type: ACTIVE_SET_PRIMARY,
+    primary: primary
+  }
+}
 
 // FILTERS
 export const FILTER_CLEAR_PRIMARY = 'FILTER_CLEAR_PRIMARY';
@@ -70,6 +77,7 @@ export function clearFilterPrimary() {
 // SECONDARY
 export const FILTER_CLEAR_SECONDARY = 'FILTER_CLEAR_SECONDARY';
 export const FILTER_SET_SECONDARY = 'FILTER_SET_SECONDARY';
+export const FILTER_TOGGLE_SECONDARY_FILTER = 'FILTER_TOGGLE_SECONDARY_FILTER';
 export const FILTER_TOGGLE_SECONDARY = 'FILTER_TOGGLE_SECONDARY';
 
 export function setFilterSecondary(secondaries) {
@@ -85,9 +93,16 @@ export function clearFilterSecondary() {
   }
 }
 
-export function toggleFilterSecondary(secondary_i, filter_i) {
+export function toggleSecondary(secondary_id) {
   return {
     type: FILTER_TOGGLE_SECONDARY,
+    secondary_id: secondary_id
+  }
+}
+
+export function toggleFilterSecondary(secondary_i, filter_i) {
+  return {
+    type: FILTER_TOGGLE_SECONDARY_FILTER,
     secondary_i: secondary_i,
     filter_i: filter_i
   }

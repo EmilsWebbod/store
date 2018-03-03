@@ -35,6 +35,7 @@ describe('SecondaryList', () => {
 
   it('should mapDispatchToProp', () => {
     const dispatch = () => {};
-    expect(mapDispatchToProp(dispatch).handleFilterClick).toBeTruthy();
+    expect(mapDispatchToProp(dispatch)).toHaveProperty('handleFilterClick');
+    expect(mapDispatchToProp(dispatch)).toHaveProperty('handleSecondaryToggle');
   })
 });

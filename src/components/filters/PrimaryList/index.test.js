@@ -5,29 +5,36 @@ import {PrimaryList, mapStateToProps, mapDispatchToProps} from './'
 import Primary from '../Primary';
 import {primaries} from "../../../test/mock/primary.moct";
 import {Ul} from "../../global/list";
+import {DEFAULT_STORE} from "../../../redux/store/index.test";
+import Button from "material-ui/Button/Button";
 
 const handleClick = () => {};
+const Render = (spy = handleClick) => shallow(
+  <PrimaryList primaries={primaries} handlePrimaryClick={spy}/>
+);
+
 
 describe('PrimaryList Component', () => {
   it('should create ul', () => {
-    const wrapper = shallow(<PrimaryList primaries={primaries} handlePrimaryClick={handleClick}/>);
-    expect(wrapper.is(Ul)).toBeTruthy();
+    expect(Render().is(Ul)).toBeTruthy();
   });
 
   it('should create Primary items of array length', () => {
-    const wrapper = shallow(<PrimaryList primaries={primaries} handlePrimaryClick={handleClick}/>);
-    expect(wrapper.find(Primary).length).toBe(primaries.length);
+    expect(Render().find(Primary).length).toBe(primaries.length);
   });
 
-  // Todo: Find a way to trigger function
   it('should handle on item click', () => {
-    const buttonClicked = sinon.spy();
-    const wrapper = shallow(<PrimaryList primaries={primaries} handlePrimaryClick={buttonClicked}/>);
+    const spy = sinon.spy();
+    Render(spy).find(Primary).forEach(el => el.shallow().find(Button).first().simulate('click'));
+    expect(spy.callCount).toBe(primaries.length);
   });
 
   it('should mapStateToProps', () => {
-    const state = { filters: { primaries: [] } };
-    expect(mapStateToProps(state)).toEqual({primaries: state.filters.primaries});
+    const state = DEFAULT_STORE;
+    expect(mapStateToProps(state)).toEqual({
+      primaries: state.filters.primaries,
+      active: state.filters.active.primary
+    });
   });
 
   it('should mapDispatchToProps', () => {

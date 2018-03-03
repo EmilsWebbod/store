@@ -1,26 +1,12 @@
 import { initialState as initialCounterState } from '../reducers/modules/counter';
+import {DEFAULT_FILTER_STATE} from "../reducers/filter/filters";
+import {DEFAULT_SHOPPING_STATE} from "../reducers/shopping/shopping";
 
-const DEFAULT_STORE = {
+export const DEFAULT_STORE = {
   routing: { locationBeforeTransitions: null },
   counter: initialCounterState,
-  filters: {
-    primaries: [],
-    secondaries: [],
-    filters: [],
-    active: {
-      category: null,
-      filter: null,
-      item: null
-    }
-  },
-  shopping: {
-    list: [],
-    drift: {
-      filter: [],
-      list: [],
-      updated: 0
-    }
-  },
+  filters: DEFAULT_FILTER_STATE,
+  shopping: DEFAULT_SHOPPING_STATE,
   api: {
     apiCalls: 0,
     apiPending: false,
