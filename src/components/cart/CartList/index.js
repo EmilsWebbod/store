@@ -2,13 +2,17 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import CartItem from "../CartItem/index";
+import List, { ListItem } from 'material-ui/List';
+import styles from './index.scss';
 
 const CartList = ({items}) => (
-    <ul>
+    <List>
       {items.map(item => (
-        <li key={item.id}><CartItem {...item} /></li>
+        <ListItem key={item.id} className={styles.CartListItem}>
+          <CartItem {...item} />
+        </ListItem>
       ))}
-    </ul>
+    </List>
 );
 
 CartList.proptypes = {

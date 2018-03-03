@@ -1,11 +1,18 @@
 .Drift {
   display: flex;
+  margin: 2px 0;
 }
 
 .right {
 
 }
 
-.inline {
+.button {
+  margin: 0 1px !important;
+  min-width: 50px !important;
+}
 
+.paper {
+  padding: 10px;
+  flex: 1;
 }

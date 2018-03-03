@@ -5,11 +5,12 @@ import Item from "../Item/index";
 import {bindActionCreators} from "redux";
 import {addShoppingDrift} from "../../../redux/actions/actions";
 import GridList, { GridListTile } from 'material-ui/GridList';
+import styles from './index.scss';
 
 const ItemList = ({items, handleItemClick}) => (
   <GridList cellHeight={400} cols={3}>
     {items.map(item => (
-      <GridListTile key={item.id} cols={1}>
+      <GridListTile key={item.id} cols={1} >
         <Item {...item} onClick={() => handleItemClick(item)}/>
       </GridListTile>
     ))}

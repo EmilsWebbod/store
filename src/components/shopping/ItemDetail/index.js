@@ -3,14 +3,30 @@ import PropTypes from 'prop-types';
 import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
 import {addItemToCart} from "../../../redux/actions/actions";
+
 import Card, { CardActions, CardContent, CardMedia } from 'material-ui/Card';
+import Grid from 'material-ui/Grid';
+
 import styles from './index.scss';
+import Carousel from "../../global/images/Carousel/index";
+import Typography from "material-ui/Typography/Typography";
+import Button from "material-ui/Button/Button";
 
 const ItemDetail = ({id, text, images, handleItemClick}) => (
-  <Card className={styles.ItemDetail}>
-    {text}
-    <button onClick={() => handleItemClick(id)}>Buy</button>
-  </Card>
+  <Grid container>
+    <Grid xs={6}>
+      <Carousel images={images} />
+    </Grid>
+    <Grid xs={6}>
+      <Typography variant="headline">
+        Item Headline
+      </Typography>
+      <Typography variant="body2" >
+        {text}
+      </Typography>
+      <Button variant="raised" color="primary" onClick={() => handleItemClick(id)}>Buy</Button>
+    </Grid>
+  </Grid>
 );
 
 ItemDetail.proptypes = {
