@@ -28,13 +28,13 @@ class Secondary extends React.Component {
     let {filters, id, text, onClick} = this.props;
     return (
       <List>
-        <ListItem key={id} button onClick={this.toggleCollapse}>
+        <ListItem button onClick={this.toggleCollapse}>
           <ListItemText primary={text}/>
           {this.state.open ? <ExpandLess /> : <ExpandMore />}
         </ListItem>
         <Collapse in={this.state.open}>
           {filters.map((filter, i)=> (
-            <SecondaryFilter {...filter} onClick={onClick(i)}/>
+            <SecondaryFilter key={filter.id} {...filter} onClick={onClick(i)}/>
           ))}
         </Collapse>
       </List>

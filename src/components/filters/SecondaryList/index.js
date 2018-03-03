@@ -6,7 +6,7 @@ import {toggleFilterSecondary} from "../../../redux/actions/actions";
 const SecondaryList = ({secondaries, handleFilterClick}) => (
   <div>
     {secondaries.map((secondary, i) => (
-      <Secondary {...secondary} onClick={handleFilterClick(i)}/>
+      <Secondary key={secondary.id} {...secondary} onClick={handleFilterClick(i)}/>
     ))}
   </div>
 );

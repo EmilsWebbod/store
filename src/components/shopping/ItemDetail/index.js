@@ -4,7 +4,6 @@ import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
 import {addItemToCart} from "../../../redux/actions/actions";
 
-import Card, { CardActions, CardContent, CardMedia } from 'material-ui/Card';
 import Grid from 'material-ui/Grid';
 
 import styles from './index.scss';
@@ -13,20 +12,28 @@ import Typography from "material-ui/Typography/Typography";
 import Button from "material-ui/Button/Button";
 
 const ItemDetail = ({id, text, images, handleItemClick}) => (
-  <Grid container>
-    <Grid xs={6}>
-      <Carousel images={images} />
-    </Grid>
-    <Grid xs={6}>
-      <Typography variant="headline">
+  <div>
+    { id ? (
+      <Grid container>
+        <Grid item xs={6}>
+          <Carousel images={images} />
+        </Grid>
+        <Grid item xs={6}>
+        <Typography variant="headline">
         Item Headline
-      </Typography>
-      <Typography variant="body2" >
+        </Typography>
+        <Typography variant="body2" >
         {text}
-      </Typography>
-      <Button variant="raised" color="primary" onClick={() => handleItemClick(id)}>Buy</Button>
-    </Grid>
-  </Grid>
+        </Typography>
+        <Button variant="raised" color="primary" onClick={() => handleItemClick(id)}>Buy</Button>
+        </Grid>
+      </Grid>
+    ) : (
+      <div>
+        No item selected
+      </div>
+    )}
+  </div>
 );
 
 ItemDetail.proptypes = {
@@ -35,7 +42,7 @@ ItemDetail.proptypes = {
   images: PropTypes.array
 };
 
-const mapStateToProps = state => state.filters.active.item || {};
+const mapStateToProps = state => state.filters.active.item;
 
 const mapDispatchToProps = (dispatch) => ({
   handleItemClick: (item) => {

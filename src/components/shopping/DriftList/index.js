@@ -8,24 +8,6 @@ import Collapse from 'material-ui/transitions/Collapse';
 import ExpandLess from 'material-ui-icons/ExpandLess';
 import ExpandMore from 'material-ui-icons/ExpandMore';
 
-const test = ({drift_list, drift_headers, handleDriftClick}) => (
-  <div>
-    {drift_list.map((filter, i) => (
-      <List>
-        <ListItem button onClick={this.toggleCollapse}>
-          <ListItemText primary={drift_headers[i]} />
-          {this.state.open ? <ExpandLess /> : <ExpandMore />}
-        </ListItem>
-        <Collapse in={this.state.open}>
-          {filter.map((item, j) => (
-            <Drift {...item} onClick={() => handleDriftClick(item)}/>
-          ))}
-        </Collapse>
-      </List>
-    ))}
-  </div>
-);
-
 class DriftList extends React.Component {
   state = {
     open: true
@@ -42,14 +24,14 @@ class DriftList extends React.Component {
     return (
       <div>
         {drift_list.map((filter, i) => (
-          <List>
+          <List key={i}>
             <ListItem button onClick={this.toggleCollapse}>
               <ListItemText primary={drift_headers[i]} />
               {this.state.open ? <ExpandLess /> : <ExpandMore />}
             </ListItem>
             <Collapse in={this.state.open}>
               {filter.map((item, j) => (
-                <Drift {...item} onClick={() => handleDriftClick(item)}/>
+                <Drift key={item.id} {...item} onClick={() => handleDriftClick(item)}/>
               ))}
             </Collapse>
           </List>

@@ -5,6 +5,7 @@ import * as sinon from "sinon";
 import PropTypes from 'prop-types'
 
 import {secondary} from "../../../test/mock/secondary.mock";
+import Chip from "material-ui/Chip/Chip";
 
 const handleClick = () => {};
 const Render = (filters = secondary[0].filters[0],
@@ -12,7 +13,7 @@ const Render = (filters = secondary[0].filters[0],
 
 describe('Tab', () => {
   it('should render as button', () => {
-    expect(Render().is('button')).toBeTruthy();
+    expect(Render().is(Chip)).toBeTruthy();
   });
 
   it('should set proptypes', () => {
@@ -29,7 +30,7 @@ describe('Tab', () => {
   it('should handle on click', () => {
     const spy = sinon.spy();
     const wrapper = Render(undefined, spy);
-    wrapper.find('button').simulate('click');
+    wrapper.find(Chip).simulate('click');
     expect(spy.callCount).toBe(1);
   });
 });

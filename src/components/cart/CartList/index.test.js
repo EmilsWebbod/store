@@ -4,13 +4,14 @@ import PropTypes from 'prop-types';
 import {CartList, mapStateToProps, mapDispatchToProps} from './';
 import {mock_list2} from "../../../test/mock/list.mock";
 import CartItem from "../CartItem/index";
+import List from 'material-ui/List';
 
 const items = mock_list2;
 const Render = () => shallow(<CartList items={items}/>);
 
 describe('TEST', () => {
     it('should render as ul', () => {
-        expect(Render().is('ul')).toBeTruthy();
+        expect(Render().is(List)).toBeTruthy();
     });
 
     it('should render items from list', () => {

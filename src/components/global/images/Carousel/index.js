@@ -9,7 +9,7 @@ const Carousel = ({images}) => (
     <Grid item xs={2}>
       <Grid container direction="column" justify="flex-start" alignItems="flex-start">
         {images.map(image => (
-          <Grid item>
+          <Grid item key={image}>
             <img src="" alt="Item Image" className={styles.Img} />
           </Grid>
         ))}

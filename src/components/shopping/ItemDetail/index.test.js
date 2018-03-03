@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 import {ItemDetail, mapStateToProps, mapDispatchToProps} from './';
 import {mock_list} from "../../../test/mock/list.mock";
 import * as sinon from "sinon";
+import Grid from 'material-ui/Grid';
+import Button from "material-ui/Button/Button";
 
 const item = mock_list[0];
 const handleClick = () => {};
@@ -20,7 +22,7 @@ describe('ITEM DETAIL', () => {
 
   it('should handle itemClick', () => {
     const spy = sinon.spy();
-    Render(spy).find('button').simulate('click');
+    Render(spy).find(Button).simulate('click');
     expect(spy.callCount).toBe(1);
   });
 

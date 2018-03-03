@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import sinon from 'sinon';
 import Primary from "./";
-import Button from "material-ui/es/Button/Button";
+import Button from "material-ui/Button/Button";
 
 const handleClick = () => {};
 
@@ -23,7 +23,7 @@ describe('Primary Component', () => {
   it('should trigger onClick when clicked', () => {
     const onButtonClick = sinon.spy();
     const wrapper = shallow(<Primary id={id} text={text} onClick={onButtonClick}/>);
-    wrapper.find('button').simulate('click');
+    wrapper.find(Button).simulate('click');
     expect(onButtonClick.callCount).toBe(1);
   });
 });

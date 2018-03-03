@@ -4,6 +4,7 @@ import Drift from './';
 import PropTypes from 'prop-types';
 import {mock_list} from "../../../test/mock/list.mock";
 import * as sinon from "sinon";
+import Button from 'material-ui/Button';
 
 const item = mock_list[0];
 const handleClick = () => {};
@@ -28,7 +29,7 @@ describe('DRIFT COMPONENT', () => {
 
   it('should handle onClick', () => {
     const spy = sinon.spy();
-    Render(spy).find('button').simulate('click');
+    Render(spy).find(Button).first().simulate('click');
     expect(spy.callCount).toBe(1);
   })
 });

@@ -10,7 +10,7 @@ const onClick = () => {};
 describe('SecondaryList', () => {
   it('should render as ul', () => {
     const wrapper = shallow(<SecondaryList secondaries={secondaries} handleFilterClick={onClick}/>);
-    expect(wrapper.is('ul')).toBeTruthy();
+    expect(wrapper.is('div')).toBeTruthy();
   });
 
   it('should render Header on secondaries', () => {

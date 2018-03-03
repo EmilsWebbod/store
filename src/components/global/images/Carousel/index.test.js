@@ -2,12 +2,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {shallow} from "enzyme";
 import Carousel from './';
+import Grid from 'material-ui/Grid';
+import {mock_list} from "../../../../test/mock/list.mock";
 
-const Render = () => shallow(<Carousel/>);
+const item = mock_list[0];
+
+const Render = () => shallow(<Carousel images={item.images}/>);
 
 describe('TEST', () => {
     it('should render as div', () => {
-        expect(Render().is('div')).toBeTruthy();
+        expect(Render().is(Grid)).toBeTruthy();
     });
 
     it('should set proptypes', () => {

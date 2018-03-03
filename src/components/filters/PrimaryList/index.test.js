@@ -4,13 +4,14 @@ import sinon from 'sinon';
 import {PrimaryList, mapStateToProps, mapDispatchToProps} from './'
 import Primary from '../Primary';
 import {primaries} from "../../../test/mock/primary.moct";
+import {Ul} from "../../global/list";
 
 const handleClick = () => {};
 
 describe('PrimaryList Component', () => {
   it('should create ul', () => {
     const wrapper = shallow(<PrimaryList primaries={primaries} handlePrimaryClick={handleClick}/>);
-    expect(wrapper.is('ul')).toBeTruthy();
+    expect(wrapper.is(Ul)).toBeTruthy();
   });
 
   it('should create Primary items of array length', () => {

@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import {mock_list, mock_list2, mock_list3} from "../../../test/mock/list.mock";
 import * as sinon from "sinon";
 import Drift from "../Drift/index";
+import Button from "material-ui/Button";
 
 const headers = [
   'Hats',
@@ -26,7 +27,7 @@ const Render = (click = handleClick) =>
 
 describe('DRIFT LIST COMPONENT', () => {
   it('should render as ul', () => {
-    expect(Render().is('ul')).toBeTruthy();
+    expect(Render().is('div')).toBeTruthy();
   });
 
   it('should render items from array', () => {
@@ -35,12 +36,12 @@ describe('DRIFT LIST COMPONENT', () => {
 
   it('should render and handle click', () => {
     const spy = sinon.spy();
-    Render(spy).find('Drift').forEach(x => x.shallow().find('button').simulate('click'));
+    Render(spy).find('Drift').forEach(x => x.shallow().find(Button).first().simulate('click'));
     expect(spy.callCount).toBe(items_length);
   });
 
   it('should set proptypes', () => {
-    expect(DriftList.proptypes).toEqual({
+    expect(DriftList.proptype).toEqual({
       drift_headers: PropTypes.array,
       drift_list: PropTypes.array
     })

@@ -4,13 +4,14 @@ import {ItemList, mapStateToProps, mapDispatchToProps} from './'
 import PropTypes from 'prop-types';
 import {mock_list} from "../../../test/mock/list.mock";
 import Item from "../Item/index";
+import GridList from 'material-ui/GridList';
 
 const items = mock_list;
 const Render = () => shallow(<ItemList items={items} />);
 
 describe('ITEM LIST', () => {
   it('should render as a ul', () => {
-    expect(Render().is('ul')).toBeTruthy();
+    expect(Render().is(GridList)).toBeTruthy();
   });
 
   it('should set propTypes', () => {

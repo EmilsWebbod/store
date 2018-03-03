@@ -13,13 +13,12 @@ class TabList extends Component {
 
   render() {
     const {secondaries, handleTabClick} = this.props;
-    const Tag = filter => <Tab {...filter} onClick={() => handleTabClick(filter)} />;
 
     return (
       <Paper className={styles.Paper}>
         {secondaries.map(secondary => {
           return secondary.filters.map(filter => {
-            return filter.active ? <Tag {...filter} /> : '';
+            return filter.active ? <Tab {...filter} onClick={() => handleTabClick(filter)} /> : '';
           })
         })}
       </Paper>

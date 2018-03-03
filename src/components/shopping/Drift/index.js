@@ -10,14 +10,14 @@ import Close from 'material-ui-icons/Close';
 
 const Drift = ({id, text, onClick}) => (
   <div className={styles.Drift}>
-    <Button variant="raised" className={styles.button}>
-      <Close className={styles.right} onClick={onClick}/>
+    <Button variant="raised" className={styles.button} onClick={onClick}>
+      <Close className={styles.right} />
     </Button>
     <Paper className={styles.paper}>
       {text}
     </Paper>
-    <Button variant="raised" className={styles.button}>
-      <Eye className={styles.right} onClick={onClick}/>
+    <Button variant="raised" className={styles.button} onClick={onClick}>
+      <Eye className={styles.right} />
     </Button>
   </div>
 );
