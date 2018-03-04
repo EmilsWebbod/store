@@ -27,7 +27,7 @@ const CartItem = ({id, text, total}) => (
   </div>
 );
 
-CartItem.proptypes = {
+CartItem.propTypes = {
   id: PropTypes.string.isRequired,
   text: PropTypes.string.isRequired
 };

@@ -21,7 +21,8 @@ describe('TabList', () => {
 
   it('should mapDispatchToProps', () => {
     const state = { filters: { secondaries: []} };
-    expect(mapDispatchToProps(state)).toHaveProperty('handleTabClick')
+    expect(mapDispatchToProps(state)).toHaveProperty('handleTabClick');
+    expect(mapDispatchToProps(state)).toHaveProperty('handleTabDelete');
   });
 
   it('should render items from list', () => {

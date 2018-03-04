@@ -13,12 +13,12 @@ describe('SecondaryList', () => {
     expect(wrapper.is('div')).toBeTruthy();
   });
 
-  it('should render Header on secondaries', () => {
+  it('should render Head on secondaries', () => {
     const wrapper = shallow(<SecondaryList secondaries={secondaries} handleFilterClick={onClick}/>);
     expect(wrapper.find('<h4>Secondaries</h4>')).toBeTruthy();
   });
 
-  it('should render Header on no secondaries', () => {
+  it('should render Head on no secondaries', () => {
     const wrapper = shallow(<SecondaryList secondaries={[]} handleFilterClick={onClick}/>);
     expect(wrapper.find('<h4>Please select a active_filter</h4>')).toBeTruthy();
   });

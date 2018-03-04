@@ -31,7 +31,7 @@ const Item = ({id, text, onClick}) => (
   </Card>
 );
 
-Item.proptypes = {
+Item.propTypes = {
   id: PropTypes.string.isRequired,
   text: PropTypes.string.isRequired
 };

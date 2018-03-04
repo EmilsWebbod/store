@@ -15,7 +15,7 @@ const CartList = ({items}) => (
     </List>
 );
 
-CartList.proptypes = {
+CartList.propTypes = {
   items: PropTypes.array
 };
 

@@ -33,7 +33,7 @@ class SecondaryFilter extends React.Component {
   }
 }
 
-SecondaryFilter.proptypes = {
+SecondaryFilter.propTypes = {
   id: PropTypes.string.isRequired,
   text: PropTypes.string.isRequired,
   active: PropTypes.bool,

@@ -19,7 +19,9 @@ describe('Tab', () => {
   it('should set proptypes', () => {
     expect(Tab.proptypes).toEqual({
       id: PropTypes.string.isRequired,
-      text: PropTypes.string.isRequired
+      text: PropTypes.string.isRequired,
+      onClick: PropTypes.func.isRequired,
+      onDelete: PropTypes.func.isRequired
     });
   });
 

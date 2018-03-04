@@ -7,6 +7,7 @@ import List, { ListItem, ListItemText } from 'material-ui/List';
 import Collapse from 'material-ui/transitions/Collapse';
 import ExpandLess from 'material-ui-icons/ExpandLess';
 import ExpandMore from 'material-ui-icons/ExpandMore';
+import { push } from 'react-router-redux'
 
 class DriftList extends React.Component {
   state = {
@@ -23,25 +24,34 @@ class DriftList extends React.Component {
     const {drift_headers, drift_list, handleDriftClick} = this.props;
     return (
       <div>
-        {drift_list.map((filter, i) => (
-          <List key={i}>
-            <ListItem button onClick={this.toggleCollapse}>
+        {!drift_list || drift_list.length === 0 ? (
+          <div>
+            Add Item to Drift List
+          </div>
+        ) : (
+          <div>
+            {drift_list.map((filter, i) => (
+              <List key={i}>
+              <ListItem button onClick={this.toggleCollapse}>
               <ListItemText primary={drift_headers[i]} />
               {this.state.open ? <ExpandLess /> : <ExpandMore />}
-            </ListItem>
-            <Collapse in={this.state.open}>
+              </ListItem>
+              <Collapse in={this.state.open}>
               {filter.map((item, j) => (
                 <Drift key={item.id} {...item} onClick={() => handleDriftClick(item)}/>
               ))}
-            </Collapse>
-          </List>
-        ))}
+              </Collapse>
+              </List>
+            ))}
+          </div>
+        )}
       </div>
     )
   }
 }
 
 DriftList.proptype = {
+  updated: PropTypes.bool,
   drift_headers: PropTypes.array,
   drift_list: PropTypes.array
 };
@@ -55,6 +65,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   handleDriftClick: (item) => {
+    dispatch(push('/store/details'));
     dispatch(setActiveItem(item))
   }
 });

@@ -21,7 +21,7 @@ const Carousel = ({images}) => (
   </Grid>
 );
 
-Carousel.proptypes = {
+Carousel.propTypes = {
   images: PropTypes.array.isRequired
 };
 

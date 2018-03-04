@@ -10,22 +10,28 @@ import Button from "material-ui/Button/Button";
 import Arrow from "material-ui-icons/ArrowForward"
 
 import styles from './index.scss';
+import {toggleFilterSecondary, toggleSecondary} from "../../../redux/actions/actions";
+import {Link} from "react-router";
 
 class TabList extends Component {
 
   render() {
-    const {secondaries, handleTabClick} = this.props;
+    const {secondaries, handleTabClick, handleTabDelete} = this.props;
 
     return (
       <div className={styles.TabList}>
-        <Button>
-          Add Filters
-          <Arrow />
-        </Button>
+        <Link to="/store/filter">
+          <Button >
+            Add Filters
+            <Arrow />
+          </Button>
+        </Link>
         <Paper className={styles.Paper}>
-          {secondaries.map(secondary => {
-            return secondary.filters.map(filter => {
-              return filter.active ? <Tab {...filter} onClick={() => handleTabClick(filter)} /> : '';
+          {secondaries.map((secondary, i) => {
+            return secondary.filters.map((filter, j) => {
+              return filter.active ? <Tab {...filter}
+                                          onClick={() => handleTabClick(filter)}
+                                          onDelete={() => handleTabDelete(i, j)} /> : '';
             })
           })}
         </Paper>
@@ -42,7 +48,10 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    handleTabClick: filter => bindActionCreators(apiGetList, dispatch)(filter)
+    handleTabClick: filter => bindActionCreators(apiGetList, dispatch)(filter),
+    handleTabDelete: (secondary_i, filter_i) => {
+      dispatch(toggleFilterSecondary(secondary_i, filter_i))
+    }
   }
 };
 

@@ -8,8 +8,8 @@ import Grid from 'material-ui/Grid';
 
 import styles from './index.scss';
 import Carousel from "../../global/images/Carousel/index";
-import Typography from "material-ui/Typography/Typography";
-import Button from "material-ui/Button/Button";
+import Typography from "material-ui/Typography";
+import Button from "material-ui/Button";
 
 const ItemDetail = ({id, text, images, handleItemClick}) => (
   <div>
@@ -36,13 +36,13 @@ const ItemDetail = ({id, text, images, handleItemClick}) => (
   </div>
 );
 
-ItemDetail.proptypes = {
-  id: PropTypes.string.isRequired,
-  text: PropTypes.string.isRequired,
+ItemDetail.propTypes = {
+  id: PropTypes.string,
+  text: PropTypes.string,
   images: PropTypes.array
 };
 
-const mapStateToProps = state => state.filters.active.item;
+const mapStateToProps = state => state.filters.active.item || {};
 
 const mapDispatchToProps = (dispatch) => ({
   handleItemClick: (item) => {

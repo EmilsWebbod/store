@@ -4,10 +4,14 @@ import promiseMiddleware from '../../helpers/promiseMiddleware';
 
 import rootReducer from '../reducers';
 import DevTools from '../containers/DevTools';
+import {routerMiddleware} from "react-router-redux";
+import {browserHistory} from "react-router";
+
+const routerWare = routerMiddleware(browserHistory);
 
 const enhancer = compose(
   // Middleware you want to use in development:
-  applyMiddleware(thunkMiddleware, promiseMiddleware),
+  applyMiddleware(thunkMiddleware, promiseMiddleware, routerWare),
   // Required! Enable Redux DevTools with the monitors you chose
   DevTools.instrument()
 );

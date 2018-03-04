@@ -87,10 +87,10 @@ export function primaries(state = DEFAULT_PRIMARIES, action) {
     case FILTER_SET_PRIMARY:
       return action.primaries;
     case FILTER_SET_SECONDARY_TO_PRIMARY:
-      let arr = [...state];
-      const i = arr.findIndex(withId(action.primary_id));
+      const i = state.findIndex(withId(action.primary_id));
       if (i === -1) { console.error('No primary with id: ', action.primary_id); return state; }
-      if (arr[i].secondary) { console.warn('Secondary already exist to primary', action.primary_id)}
+
+      let arr = [...state];
       arr[i].secondary = action.secondary;
       return arr;
     case FILTER_CLEAR_PRIMARY:
@@ -104,20 +104,7 @@ const DEFAULT_SECONDARIES = [];
 export function secondaries(state = DEFAULT_SECONDARIES, action) {
   switch (action.type) {
     case FILTER_TOGGLE_SECONDARY:
-      const s_i = state.findIndex(x => x.id === action.secondary_id);
-      if (s_i === -1) {
-        console.warn('Could not find secondary with id: ', action.secondary_id);
-        return state;
-      }
-      return state.map(secondary => {
-        if (secondary.id === action.secondary_id) {
-          return {
-            ...secondary,
-            active: !secondary || !secondary.active
-          }
-        }
-        return secondary;
-      });
+      return _toggleSecondary(state, action.secondary_id);
     case FILTER_TOGGLE_SECONDARY_FILTER:
       const s = action.secondary_i;
       const f = action.filter_i;
@@ -143,6 +130,23 @@ export function secondaries(state = DEFAULT_SECONDARIES, action) {
       return [];
     default: return state;
   }
+}
+
+function _toggleSecondary(secondaries, toggle_id) {
+  const s_i = secondaries.findIndex(x => x.id === toggle_id);
+  if (s_i === -1) {
+    console.warn('Could not find secondary with id: ', toggle_id);
+    return secondaries;
+  }
+  return secondaries.map(secondary => {
+    if (secondary.id === toggle_id) {
+      return {
+        ...secondary,
+        active: !secondary || !secondary.active
+      }
+    }
+    return secondary;
+  });
 }
 
 const DEFAULT_FILTERS = [];

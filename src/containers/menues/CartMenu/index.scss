@@ -1,0 +1,13 @@
+@import "../../../shared-styles/variables";
+
+.drawerPaper {
+  position: relative;
+  width: $drawerWidth;
+}
+
+.drawerHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 8px;
+}
